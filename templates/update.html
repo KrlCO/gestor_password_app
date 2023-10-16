@@ -7,31 +7,49 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
-        <h2>Cancerbero</h2>
+    <div>
+        <h2 class="display-3 text-center my-3">Cancerbero</h2>
     </div>
 
     <div class="container">
-        <form method="POST" action="/update/{{updated_details.id}}">
-            <input type="email" name="email" placeholder="Email" class="form-control" value="{{updated_details.email}}" >
-            <br>
-            <input type="text" name="site_url" placeholder="Site URL/Address" class="form-control" value="{{updated_details.site_url}}">
-            <br>
-            
-            <input type="password" name="site_password" placeholder="Password" class="form-control" value="{{updated_details.site_password}}">
 
-            <br>
-            <button class="btn btn-outline-primary">Add</button>
+        <a href="{{url_for('index')}}" type="button" class="btn btn-primary mb-3">Back</a>
+
+        <form class="row g-3" method="POST" action="/update/{{updated_details.id}}">
+            <div class="col-auto">
+                <label for="inputEmail" class="visually-hidden">Email</label>
+                <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email" value="{{ updated_details.email}}">
+            </div>
+            <div class="col-auto">
+                <label for="inputURL" class="visually-hidden">Site URL</label>
+                <input type="text" class="form-control" id="inputURL" placeholder="Site URL" name="site_url" value="{{ updated_details.site_url}}">
+            </div>
+            <div class="col-auto">
+                <label for="inputPassword2" class="visually-hidden">Password</label>
+                <input type="password" class="form-control" id="inputPassword2" placeholder="site_password" name="site_password" value="{{ updated_details.site_password}}">
+            </div>
+            <div class="col-auto">
+                <input type="checkbox" onclick="myFunction()">Show Password
+            </div>
+
+            <div class="col-auto">
+                <button type="submit" class="btn btn-outline-primary mb-3">Save</button>
+            </div>
         </form>
     </div>
 
-    <hr>
- 
 
-    
+<script>
+    function myFunction() {
+        var x = document.getElementById("inputPassword2");
+        if(x.type === "password") {
+            x.type = "text";
+        }else{
+            x.type = "password";
+        }
+    }
 
-
-
+</script>    
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>    
 </body>

@@ -57,19 +57,20 @@ def update_details(id):
         updated_details.site_password = request.form["site_password"]
         try:
             db.session.commit()
+            flash("Passwords updated")
             return redirect("/")
         except:
             return "There was an error updating Password Details"
-
-    return render_template("update.html",updated_details=updated_details)
+    else:
+        return render_template("update.html",updated_details=updated_details)
 
 
 @app.route("/delete/<int:id>")
 def delete_details(id):
-    new_details_to_delete = PasswordManager.query.get_or_404(id)
+    new_password_to_delete = PasswordManager.query.get_or_404(id)
     try:
-        db.session.delete(new_details_to_delete)
-        db.commit()
+        db.session.delete(new_password_to_delete)
+        db.session.commit()
         return redirect("/")
     except:
         return "There was an error deleting the details"
